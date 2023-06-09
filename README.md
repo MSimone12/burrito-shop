@@ -31,8 +31,8 @@ sh scripts/start.sh
 | 2 | `POST` | `/order` | `src/functions/createOrder/handler.ts` | Create an order (payload below) |
 | 3 | `GET` | `/order/{id}` | `src/functions/getOrderById/handler.ts` | Get an order by id |
 | 4 | `GET` | `/burritos` | `src/functions/getBurritos/handler.ts` | Get all burritos |
-| 5 | `POST` | `/burrito` | `src/functions/createBurrito/handler.ts` | Create a burrito (payload below) |
-| 6 | `GET` | `/burrito/{id}` | `src/functions/getBurritoById/handler.ts` | Gets a burrito by id |
+| 5 | `POST` | `/burrito` | `src/functions/createBurrito/handler.ts` | Creates a burrito (payload below) |
+| 6 | `GET` | `/burrito/{id}` | `src/functions/getBurritoById/handler.ts` | Get a burrito by id |
 
 ### Payloads
 
