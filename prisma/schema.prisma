@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Burrito {
+  id Int @id @default(autoincrement())
+  name  String
+  variations BurritoVariation[]
+  ingredients Ingredients[]
+  optionals OptionalIngredient[]
+  orderItems OrderItem[]
+}
+
+model Ingredients {
+  id Int @id @default(autoincrement())
+  burrito Burrito[]
+  name String
+}
+
+model BurritoVariation {
+  id Int @id @default(autoincrement())
+  burrito Burrito @relation(fields: [burritoId], references: [id])
+  burritoId Int
+  size String
+  price Int
+  orderItems OrderItem[]
+}
+
+model OptionalIngredient {
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+  burrito Burrito[]
+  items OrderItem[]
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  items OrderItem[]
+  total Int
+}
+
+model OrderItem {
+  id Int @id @default(autoincrement())
+  order Order @relation(fields: [orderId], references: [id])
+  orderId Int
+  burrito Burrito @relation(fields: [burritoId], references: [id])
+  burritoId Int
+  variation BurritoVariation @relation(fields: [variationId], references: [id])
+  variationId Int
+  optionals OptionalIngredient[]
+  quantity Int
+}
